@@ -18,12 +18,6 @@ class _CreateScreenState extends State<CreateScreen> {
   Widget build(BuildContext context) {
     return  SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: Text("productscreen", style: TextStyle(color: Colors.white)),
-          backgroundColor: Primary,
-          centerTitle: true,
-          iconTheme: IconThemeData(color: Colors.white),
-        ),
         body: SingleChildScrollView(
           child: Column(
             children: [
