@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:invoice_app/utils/coler.dart';
+import 'package:invoice_app/utils/globels.dart';
 
 class ProductScreen extends StatefulWidget {
   const ProductScreen({super.key});
@@ -25,68 +26,72 @@ class _ProductScreenState extends State<ProductScreen> {
             Padding(padding: EdgeInsets.only(right: 1))
           ],
         ),
-        body: Column(
-          children: [
-            Form(
-              key: formKey,
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Row(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.all(10),
-                          height: 100,
-                          width: 100,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            shape: BoxShape.rectangle,
-                            color: Colors.grey.shade200,
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Center(
+            child: Column(
+              children: [
+                Form(
+                  key: formKey,
+                  child: Column(
+                    children: List.generate(ProductLiet.length, (index) =>  Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Row(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.all(10),
+                            height: 100,
+                            width: 100,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              shape: BoxShape.rectangle,
+                              color: Colors.grey.shade200,
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        const Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Produect Name",
-                              style: TextStyle(
-                                fontSize: 17,
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          const Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Produect Name",
+                                style: TextStyle(
+                                  fontSize: 17,
+                                ),
                               ),
-                            ),
-                            Text(
-                              "price",
-                              style: TextStyle(
-                                fontSize: 17,
+                              Text(
+                                "price",
+                                style: TextStyle(
+                                  fontSize: 17,
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                        Spacer(),
-                        IconButton(
-                            onPressed: () {
-                              setState(() {});
-                            },
-                            icon: Icon(Icons.delete))
-                      ],
-                    ),
+                            ],
+                          ),
+                          Spacer(),
+                          IconButton(
+                              onPressed: () {
+                                setState(() {});
+                              },
+                              icon: Icon(Icons.delete)),
+                          Text("total"),
+                        ],
+                      ),
+                    ),)
                   ),
-                ],
-              ),
+                ),
+                FloatingActionButton(
+                  onPressed: () {
+                    setState(() {
+                      if (formKey.currentState!.validate()) ;
+                    });
+                    Navigator.pushNamed(context, "create");
+                  },
+                  child: Text("save"),
+                )
+              ],
             ),
-            FloatingActionButton(
-              onPressed: () {
-                setState(() {
-                  if (formKey.currentState!.validate()) ;
-                });
-                Navigator.pushNamed(context, "create");
-              },
-              child: Text("save"),
-            )
-          ],
+          ),
         ),
       ),
     );
