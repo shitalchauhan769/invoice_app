@@ -10,6 +10,7 @@ class CreateScreen extends StatefulWidget {
 
 class _CreateScreenState extends State<CreateScreen> {
   @override
+
   TextEditingController txeProduectname = TextEditingController();
    TextEditingController txePrice = TextEditingController();
    TextEditingController  txeQuantity= TextEditingController();
@@ -137,8 +138,16 @@ class _CreateScreenState extends State<CreateScreen> {
                             productprice=txePrice.text;
                             productQuantity=txeQuantity.text;
                             productDiscount=txeDiscount.text;
+                            ProductLiet.add({
+                              "productName":"$productname",
+                              "productprice":int.parse(productprice!),
+                              "productQuantity":int.parse(productQuantity!),
+                              "productDiscount":int.parse(productDiscount!)
+                            });
+                            Navigator.pop(context);
+
                           }
-                        });Navigator.pop(context);
+                        });
                       }, child: Text("save",style: TextStyle(fontSize: 17),))
                     ],
                   ),

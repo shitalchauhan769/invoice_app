@@ -6,4 +6,5 @@ String? productname;
 String? productprice;
 String? productQuantity;
 String? productDiscount;
+String? total;
 List<Map>ProductLiet=[];

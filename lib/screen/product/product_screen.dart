@@ -22,10 +22,13 @@ class _ProductScreenState extends State<ProductScreen> {
           backgroundColor: Primary,
           centerTitle: true,
           actions: [
-            Icon(Icons.save_alt_outlined,color: Colors.white),
-            Padding(padding: EdgeInsets.only(right: 1))
+            ElevatedButton(onPressed: () {
+              Navigator.pushNamed(context,'invoice');
+            }, child:Icon(Icons.save_alt_outlined,color: Colors.white),
+                )
           ],
-        ),
+
+       ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Center(
@@ -36,65 +39,64 @@ class _ProductScreenState extends State<ProductScreen> {
                   child: Column(
                     children: List.generate(ProductLiet.length, (index) =>  Padding(
                       padding: const EdgeInsets.all(10),
-                      child: Row(
+                      child: Column(
                         children: [
-                          Container(
-                            padding: EdgeInsets.all(10),
-                            height: 100,
-                            width: 100,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              shape: BoxShape.rectangle,
-                              color: Colors.grey.shade200,
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          const Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                          Row(
                             children: [
-                              Text(
-                                "Produect Name",
-                                style: TextStyle(
-                                  fontSize: 17,
+                              Container(
+                                padding: EdgeInsets.all(10),
+                                height: 100,
+                                width: 100,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  shape: BoxShape.rectangle,
+                                  color: Colors.grey.shade200,
                                 ),
                               ),
-                              Text(
-                                "price",
-                                style: TextStyle(
-                                  fontSize: 17,
-                                ),
+                              const SizedBox(
+                                width: 10,
                               ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text("${ProductLiet[index]['productName']}"),
+                                  Text("${ProductLiet[index]['productprice']}"),
+                                ],
+                              ),
+                              Spacer(),
+                               InkWell(onTap: () {
+                                 setState(() {
+                                   ProductLiet.removeAt(index);
+                                 });
+                               },
+                                 child: Icon(Icons.delete),
+                               ),
+                              Text("${total(ProductLiet[index]['productprice'], ProductLiet[index]['productQuantity'])}"),
                             ],
                           ),
-                          Spacer(),
-                          IconButton(
-                              onPressed: () {
-                                setState(() {});
-                              },
-                              icon: Icon(Icons.delete)),
-                          Text("total"),
                         ],
                       ),
                     ),)
                   ),
                 ),
-                FloatingActionButton(
-                  onPressed: () {
-                    setState(() {
-                      if (formKey.currentState!.validate()) ;
-                    });
-                    Navigator.pushNamed(context, "create");
-                  },
-                  child: Text("save"),
-                )
               ],
             ),
           ),
         ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            setState(() {
+              if (formKey.currentState!.validate()) ;
+            });
+            Navigator.pushNamed(context, "create");
+          },
+          child: Text("+"),
+        ) ,
       ),
     );
+  }
+  int total(int p,int q){
+    return p*q ;
   }
 }
 //
