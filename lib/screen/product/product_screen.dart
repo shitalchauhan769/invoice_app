@@ -33,55 +33,57 @@ class _ProductScreenState extends State<ProductScreen> {
           child: Center(
             child: Column(
               children: [
-                Column(
-                    children: List.generate(
-                  ProductLiet.length,
-                  (index) => Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Container(
-                              padding: EdgeInsets.all(10),
-                              height: 100,
-                              width: 100,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                shape: BoxShape.rectangle,
-                                color: Colors.grey.shade200,
+                Column(children: [
+                  Row(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: List.generate(
+                          ProductLiet.length,
+                          (index) => Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      padding: EdgeInsets.all(10),
+                                      height: 100,
+                                      width: 100,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
+                                        shape: BoxShape.rectangle,
+                                        color: Colors.grey.shade200,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Column(
+                                        children: [
+                                          Text(ProductLiet[index]['name']),
+                                          Text('${ProductLiet[index]['price']}'),
+                                          Text('${ProductLiet[index]['Quantity']}'),
+                                          Text('${ProductLiet[index]['Discont']}'),
+                                        ],
+                                      ),
+                                    ),
+                                    Spacer(),
+                                    IconButton(onPressed: () {
+                                      setState(() {
+
+                                      });
+                                    }, icon: Icon)
+                                  ],
+                                ),
                               ),
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: List.generate(
-                                  ProductLiet.length,
-                                  (index) => Column(
-                                    children: [
-                                      Text(ProductLiet[index]['name']),
-                                      Text('${ProductLiet[index]['price']}')
-                                    ],
-                                  )
-                                )),
-                            Spacer(),
-                            InkWell(
-                              onTap: () {
-                                setState(() {
-                                  ProductLiet.removeAt(index);
-                                });
-                              },
-                              child: Icon(Icons.delete),
-                            ),
-                            // Text("${total(ProductLiet[index]['productprice'], ProductList[index]['productQuantity'])}"),
-                          ],
+                            ],
+                          ),
                         ),
-                      ],
-                    ),
+                      ),
+
+                    ],
                   ),
-                )),
+                ]),
                 IconButton(
                     onPressed: () {
                       setState(() {
