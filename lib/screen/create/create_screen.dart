@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:invoice_app/utils/coler.dart';
+import 'package:invoice_app/utils/coloer.dart';
 import 'package:invoice_app/utils/globels.dart';
 class CreateScreen extends StatefulWidget {
   const CreateScreen({super.key});
@@ -131,20 +131,25 @@ class _CreateScreenState extends State<CreateScreen> {
                       ),
                       SizedBox(height: 15,),
                       ElevatedButton(onPressed: () {
-                        setState(() {
-                          if(formKey.currentState!.validate());
+                        setState(() {if(formKey.currentState!.validate());
                           {
-                            productname=txeProduectname.text;
-                            productprice=txePrice.text;
-                            productQuantity=txeQuantity.text;
-                            productDiscount=txeDiscount.text;
-                            ProductLiet.add({
-                              "productName":"$productname",
-                              "productprice":int.parse(productprice!),
-                              "productQuantity":int.parse(productQuantity!),
-                              "productDiscount":int.parse(productDiscount!)
-                            });
-                            Navigator.pop(context);
+                            String? pname = txeProduectname.text;
+                            String? Pprice= txePrice.text;
+                            String? PQuantity = txeQuantity.text;
+                            String? PDiscount = txeDiscount.text;;
+
+
+                            // productDiscount=txeDiscount.text;
+                            Map main={
+                             "name":pname,
+                              "price":Pprice,
+                              "Quantity":PQuantity,
+                              "Discont":PDiscount
+                            };
+                            ProductLiet.add(main);
+                            Navigator.pushNamed(context, 'product').then((value) => setState(() {
+                              
+                            }));
 
                           }
                         });

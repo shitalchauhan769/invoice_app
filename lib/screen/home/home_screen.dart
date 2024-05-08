@@ -1,5 +1,7 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
-import 'package:invoice_app/utils/coler.dart';
+import 'package:invoice_app/utils/coloer.dart';
 import 'package:invoice_app/utils/globels.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -27,23 +29,23 @@ class _HomeScreenState extends State<HomeScreen> {
           backgroundColor: Primary,
           iconTheme: IconThemeData(color: Colors.white),
         ),
-        body: Center(
-            child: Container(
-          padding: EdgeInsets.all(20),
-          margin: EdgeInsets.all(20),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(5),
-            boxShadow: const [
-              BoxShadow(
-                color: Colors.grey,
-                spreadRadius: 2,
-              ),
-            ],
-          ),
-          child: SingleChildScrollView(
-            child: Form(
-              key: formKey,
+        body: Form(
+          key: formKey,
+          child: Center(
+              child: Container(
+            padding: EdgeInsets.all(20),
+            margin: EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(5),
+              boxShadow: const [
+                BoxShadow(
+                  color: Colors.grey,
+                  spreadRadius: 2,
+                ),
+              ],
+            ),
+            child: SingleChildScrollView(
               child: Column(
                 children: [
                   const Text("Userdata",
@@ -173,16 +175,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      setState(() {
-                        if (formKey.currentState!.validate()) ;
-                        {
-                          name = txeName.text;
-                          email = txeEmail.text;
-                          mobilenumber = txePhone.text;
-                          address = txeAddress.text;
-                        }
-                      });
-                      Navigator.pushNamed(context, 'product');
+                      if (formKey.currentState!.validate())
+                       {
+                         name = txeName.text;
+                         email = txeEmail.text;
+                         mobilenumber = txePhone.text;
+                         address = txeAddress.text;
+                         Navigator.pushNamed(context, 'product');
+                       }
+                       return;
                     },
                     child: const Text(
                       "save",
@@ -192,9 +193,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-          ),
-        )),
-
+          )),
+        ),
       ),
     );
   }
